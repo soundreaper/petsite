@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PetSite</title>
+  </head>
+  <body>
+    <nav>
+        <p>Pet Site</p>
+        <form>
+        {% if request.user.is_authenticated %}
+            <div class="text-white">Hello, <strong>{{ user.username }}</strong>!</div>
+            <a href="{% url 'appointment-create-page' %}">New Appointment</a>
+            <a href="{% url 'pet-create-page' %}">New Pet</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+        {% else %}
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signup' %}">Register</a>
+        {% endif %}
+        </form>
+    </nav>
+    <main role="main" style="margin-top: 1rem">
+      {% block content %}
+        <div>
+
+        </div>
+      {% endblock %}
+    </main>
+  </body>
